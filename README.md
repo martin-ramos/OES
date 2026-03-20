@@ -13,6 +13,7 @@ It works with:
 - SOLID principles applied pragmatically
 - Performance awareness (no premature optimization)
 - Reliability controls for critical systems
+- Cloud architecture governance (AWS-ready)
 - Mandatory explicit final review
 - Quality Score (0–100)
 - Optional SDD mode

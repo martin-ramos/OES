@@ -25,6 +25,22 @@ Review FINAL (explicit)
     ↓
 Quality Score
 
+## Cloud Extension
+
+When AWS-related tasks are detected, the `aws-architect` skill may activate.
+
+Flow:
+
+Architecture Proposal
+    ↓
+Cost Evaluation
+    ↓
+Optional Deployment Plan
+    ↓
+Optional Controlled Execution (explicit confirmation required)
+
+Cloud execution is never automatic.
+
 ## Design Goals
 
 - Minimize token overhead
