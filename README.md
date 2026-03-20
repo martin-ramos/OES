@@ -42,14 +42,16 @@ It guarantees:
 - MANIFESTO.md
 - ENGRAM.md
 
-## Cloud Governance (v1.1.0)
+## Cloud Governance (v1.2.0)
 
 OES now includes:
 
-- AWS architecture governance
-- Terraform as default infrastructure strategy
-- Controlled cloud execution mode
+- Cloud-agnostic infrastructure engine
+- AWS / GCP / Azure provider abstraction
+- Terraform as default IaC strategy
+- Multi-environment infrastructure structure
+- Controlled apply/destroy model
 - Cost-awareness enforcement
-- Mandatory infrastructure confirmation before apply
+- Mandatory confirmation before cloud execution
 
-Version: v1.1.0
+Version: v1.2.0
