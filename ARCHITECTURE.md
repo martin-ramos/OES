@@ -35,11 +35,24 @@ Architecture Proposal
     ↓
 Cost Evaluation
     ↓
-Optional Deployment Plan
+Terraform Generation (default)
     ↓
-Optional Controlled Execution (explicit confirmation required)
+Terraform Plan (safe)
+    ↓
+Terraform Apply (explicit confirmation required)
 
 Cloud execution is never automatic.
+
+## Terraform Governance (v1.1.0)
+
+Rules:
+- Use S3 remote backend
+- Use DynamoDB state locking
+- No local state in production
+- Separate environments (dev/staging/prod)
+- Tag all resources
+- Apply IAM least privilege
+- Never hardcode credentials
 
 ## Design Goals
 

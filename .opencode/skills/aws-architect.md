@@ -6,6 +6,11 @@ Activate when:
 - Cost optimization requested
 - Deployment automation requested
 
+Infrastructure Strategy:
+
+Default: Terraform
+Fallback: AWS CLI (prototype only)
+
 Stages:
 
 1. Architecture & Cost Design (default)
@@ -15,23 +20,23 @@ Stages:
    - Apply IAM least privilege
    - Design for horizontal scalability
 
-2. Deployment Plan Generation (/deploy plan)
-   - Generate AWS CLI commands
-   - Generate ECS task definition JSON
-   - Generate IAM policy templates
-   - Generate networking outline (VPC, subnets, security groups)
-   - Do NOT execute
+2. Terraform Generation (/deploy terraform-plan)
+   - Generate Terraform files (main.tf, ecs.tf, alb.tf, iam.tf, variables.tf, outputs.tf, backend.tf)
+   - Use S3 backend + DynamoDB locking
+   - Do NOT execute apply
 
-3. Controlled Execution (/deploy confirm)
+3. Controlled Execution (/deploy terraform-apply confirm)
    - Print WARNING block
    - Print estimated cost impact
    - Require explicit "YES" confirmation
-   - Execute only after explicit confirmation
+   - Execute terraform apply only after explicit confirmation
 
 Rules:
 - Never execute cloud changes without explicit confirmation
 - Always evaluate cost considerations
 - Always recommend IAM least privilege
+- Use remote backend
+- Separate environments
 - Store final architecture decision using engram_remember
 
 Output (Stage 1 example):
