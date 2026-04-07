@@ -54,4 +54,23 @@ OES now includes:
 - Cost-awareness enforcement
 - Mandatory confirmation before cloud execution
 
-Version: v1.2.0
+## PR Review Skill (v1.3.0)
+
+OES now includes a `pr-reviewer` Senior Software Engineer skill:
+
+- Verifies compilation before any analysis (auto-REJECTED if fails)
+- Detects bad practices, missing patterns, poor readability
+- Evaluates commit message quality (Conventional Commits)
+- Flags files outside the PR's stated scope
+- Works with Claude Code (`/review-pr`) and OpenCode
+- Engram-integrated: stores recurring patterns as durable memory
+- Reviews one PR at a time
+
+## Tool Support
+
+| Tool | Directory |
+|---|---|
+| OpenCode | `.opencode/` |
+| Claude Code | `.claude/` |
+
+Version: v1.3.0
