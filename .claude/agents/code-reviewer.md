@@ -42,3 +42,26 @@
 - No reescribir código en el review
 
 **Calidad**: un BLOQUEANTE → RECHAZADO. Sin BLOQUEANTEs → APROBADO o APROBADO CON OBSERVACIONES.
+
+---
+
+## Output Protocol (Subagent Mode)
+
+End your response with this block. The orchestrator retains ONLY this block.
+
+```
+---HANDOFF---
+phase: F3-self-review | F6-review-final
+status: COMPLETED
+files_modified: none
+files_created: none
+security_flag: YES | NO
+verdict: APROBADO | APROBADO_CON_OBSERVACIONES | RECHAZADO
+blockers: NONE | [brief list of BLOQUEANTE items if RECHAZADO]
+summary: |
+  [Max 150 words: overall assessment, key issues found.]
+for_next: |
+  [Max 100 words: verdict, blockers for correction agent (if RECHAZADO),
+   or key observations for next phase (if APROBADO).]
+---END HANDOFF---
+```

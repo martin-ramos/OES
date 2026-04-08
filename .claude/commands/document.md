@@ -1,48 +1,36 @@
 ---
-description: Documentar un feature, endpoint o componente. Invoca documentation-writer para actualizar docs/ y CLAUDE.md según lo que cambió.
+description: Update technical documentation. Runs documentation-writer as isolated subagent.
 ---
 
-Tipo de tarea: **DOCUMENTACIÓN**
+# Document Orchestrator
 
-Qué documentar: $ARGUMENTS
-
----
-
-## documentation-writer
-
-Invoca el agente `documentation-writer` para documentar lo indicado.
-
-El writer debe:
-1. Leer el código fuente relevante para entender el comportamiento real (no inventar)
-2. Identificar qué documentación existe hoy en `docs/` que corresponde actualizar
-3. Producir o actualizar solo lo que falta o está desactualizado
-
-### Prioridad de documentación según el tipo de cambio
-
-| Si se indica... | Actualizar |
-|---|---|
-| Endpoint REST | `docs/API_ENDPOINTS.md` |
-| Variable de entorno nueva | `CLAUDE.md` sección Configuration |
-| Flujo de tareas/scheduler | `docs/FLUJO_TAREAS.md` |
-| Flujo de búsqueda/scraping | `docs/FLUJO_BUSQUEDA_END_TO_END.md` |
-| Decisión arquitectónica | `docs/ARCHITECTURE.md` |
-| Configuración de Facebook GraphQL | `docs/FACEBOOK_GRAPHQL_API.md` |
-
-### Estilo
-- Conciso y escaneable (tablas, bloques de código JSON, secciones cortas)
-- Sin documentación relleno
-- Ejemplos de request/response reales (extraídos del código, no inventados)
+**Topic**: $ARGUMENTS
 
 ---
 
-## Resumen
+## Setup
 
-```
-## Documentación actualizada: [tema]
+Read `.claude/protocols/handoff.md` → store as `HANDOFF_PROTOCOL`
 
-### Archivos modificados
-- `docs/Archivo.md` — sección actualizada
+---
 
-### Documentación obsoleta eliminada (si aplica)
-[sección o líneas removidas]
-```
+## F1 — documentation-writer
+
+1. Read `.claude/agents/documentation-writer.md`
+2. Invoke **Agent tool** (subagent_type: general-purpose):
+   ```
+   {documentation-writer.md content}
+
+   TASK: Document: $ARGUMENTS
+
+   Documentation map:
+   - REST endpoint → docs/API_ENDPOINTS.md
+   - Env var → CLAUDE.md
+   - Task/scheduler flow → docs/FLUJO_TAREAS.md
+   - Search flow → docs/FLUJO_BUSQUEDA_END_TO_END.md
+   - Architecture → docs/ARCHITECTURE.md
+   - Facebook GraphQL → docs/FACEBOOK_GRAPHQL_API.md
+
+   {HANDOFF_PROTOCOL}
+   ```
+3. Parse HANDOFF → report updated files to user.

@@ -42,3 +42,26 @@
 - Explorar archivos relevantes antes de proponer
 
 **Calidad**: el developer puede implementar el diseño sin hacer preguntas adicionales.
+
+---
+
+## Output Protocol (Subagent Mode)
+
+End your response with this block. The orchestrator retains ONLY this block.
+
+```
+---HANDOFF---
+phase: F1-architect
+status: COMPLETED | BLOCKED
+files_modified: none
+files_created: none
+security_flag: YES | NO
+verdict: N/A
+blockers: NONE | [list]
+summary: |
+  [Max 150 words: design decisions made, components identified, schema defined if any.]
+for_next: |
+  [Max 100 words: components to create/modify, key contracts/interfaces, DB schema,
+   security flag reason, trade-off decisions the developer must respect.]
+---END HANDOFF---
+```

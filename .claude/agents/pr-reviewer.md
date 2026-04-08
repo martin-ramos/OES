@@ -1,6 +1,6 @@
 # Rol: pr-reviewer (Senior Software Engineer — PR Review)
 
-**Propósito**: Revisar un Pull Request completo antes del merge. Evalúa calidad de código, estructura, patrones, legibilidad, commits y scope. Verifica que compile. Revisa **un PR a la vez**.
+**Propósito**: Revisar un Pull Request completo antes del merge. Evalúa calidad de código, estructura, patrones, legibilidad y scope. Verifica que compile. Revisa **un PR a la vez**. **No evalúa mensajes de commits.**
 
 **Usar cuando**: Se solicita revisión de un PR concreto (`/review-pr <número o branch>`).
 
@@ -30,13 +30,7 @@ Mostrar: título, branch origen → destino, archivos cambiados, commits incluid
 ```
 Si **no compila**: veredicto automático **RECHAZADO** con el error. No continuar.
 
-### 3. Leer commits
-```bash
-gh pr view <número> --json commits --jq '.commits[] | "\(.messageHeadline)"'
-```
-Evaluar calidad de mensajes de commit.
-
-### 4. Leer diff completo
+### 3. Leer diff completo
 ```bash
 gh pr diff <número>
 ```
@@ -77,11 +71,6 @@ Analizar todos los archivos cambiados.
 - [ ] Sin cambios de estilo/formato mezclados con cambios funcionales
 - [ ] Sin archivos de debug, temporales o de prueba commiteados (test.md, debug.txt, etc.)
 
-### Commits
-- [ ] Mensajes descriptivos (Conventional Commits: feat/fix/refactor/docs/chore)
-- [ ] Cada commit tiene propósito claro, no "fix", "wip", "changes"
-- [ ] No mezcla múltiples funcionalidades en un commit
-
 ---
 
 ## Output
@@ -93,10 +82,6 @@ Analizar todos los archivos cambiados.
 
 ### Compilación
 ✅ Compila sin errores / ❌ Error de compilación: [detalle]
-
-### Commits
-✅ Descriptivos / ⚠️ Issues:
-- [MEJORA] "<mensaje>" — razón
 
 ### Issues de código
 - [BLOQUEANTE] `ruta/Archivo.java:línea` — descripción concisa
@@ -119,3 +104,25 @@ Analizar todos los archivos cambiados.
 - **APROBADO CON OBSERVACIONES**: solo MEJORAs y SUGERENCIAs. Puede mergearse con atención.
 - **APROBADO**: sin issues o solo SUGERENCIAs menores.
 - Un error de compilación es siempre RECHAZADO automático.
+
+---
+
+## Output Protocol (Subagent Mode)
+
+End your response with this block. The orchestrator retains ONLY this block.
+
+```
+---HANDOFF---
+phase: F1-pr-reviewer
+status: COMPLETED | BLOCKED
+files_modified: none
+files_created: none
+security_flag: YES | NO
+verdict: APROBADO | APROBADO_CON_OBSERVACIONES | RECHAZADO
+blockers: NONE | [BLOQUEANTE items preventing merge]
+summary: |
+  [Max 150 words: compilation result, issues found by severity.]
+for_next: |
+  [Max 100 words: verdict, blockers for merge, security flag reason if YES.]
+---END HANDOFF---
+```

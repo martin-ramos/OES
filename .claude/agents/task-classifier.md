@@ -40,3 +40,29 @@
 **Restricciones**: solo clasificar. No ejecutar el pipeline. El orchestrator decide si ejecutar o confirmar con el usuario.
 
 **Calidad**: la clasificación es accionable — el pipeline correcto puede ejecutarse directamente con la tarea reformulada.
+
+---
+
+## Output Protocol (Subagent Mode)
+
+End your response with this block. The orchestrator retains ONLY this block.
+
+```
+---HANDOFF---
+phase: F1-classifier
+status: COMPLETED
+files_modified: none
+files_created: none
+security_flag: YES | NO
+verdict: N/A
+blockers: NONE
+summary: |
+  [Max 150 words: classification reasoning.]
+for_next: |
+  [Max 100 words — MUST include these fields:
+   type: feature | bug | refactor | documentation | review | deploy
+   command: /feature | /bugfix | /refactor | /document | /review | /deploy
+   security_flag: YES | NO — reason
+   reformulated_task: [clear, actionable task description]]
+---END HANDOFF---
+```

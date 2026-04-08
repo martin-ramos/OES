@@ -51,3 +51,26 @@
 - 0.25 vCPU / 0.5 GB: ~$8/mes por task running 24/7
 - 0.5 vCPU / 1 GB: ~$16/mes
 - 1 vCPU / 2 GB: ~$32/mes
+
+---
+
+## Output Protocol (Subagent Mode)
+
+End your response with this block. The orchestrator retains ONLY this block.
+
+```
+---HANDOFF---
+phase: F1-aws-architect
+status: COMPLETED | BLOCKED
+files_modified: none
+files_created: [JSON files created for AWS CLI commands, or "none"]
+security_flag: YES
+verdict: N/A
+blockers: NONE | [missing info or resources that block the plan]
+summary: |
+  [Max 150 words: operation type, resources to create/modify, sizing, cost estimate.]
+for_next: |
+  [Max 100 words: AWS CLI commands to execute in order, verification steps,
+   cost estimate, gotchas to watch for during execution.]
+---END HANDOFF---
+```

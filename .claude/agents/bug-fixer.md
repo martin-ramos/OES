@@ -41,3 +41,26 @@
 - Si el fix requiere refactor mayor, indicarlo y detener — coordinarlo con el orchestrator
 
 **Calidad**: el bug no se reproduce después del fix. El código adyacente no se vio afectado.
+
+---
+
+## Output Protocol (Subagent Mode)
+
+End your response with this block. The orchestrator retains ONLY this block.
+
+```
+---HANDOFF---
+phase: F1-bug-fixer
+status: COMPLETED | BLOCKED | NEEDS_CORRECTION
+files_modified: [comma-separated paths]
+files_created: [comma-separated paths, or "none"]
+security_flag: YES | NO
+verdict: N/A
+blockers: NONE | [list]
+summary: |
+  [Max 150 words: root cause, fix applied, gradlew classes result.]
+for_next: |
+  [Max 100 words: root cause summary, files modified, how to verify fix is working,
+   potential regressions to check in adjacent code.]
+---END HANDOFF---
+```

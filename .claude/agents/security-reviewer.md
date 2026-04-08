@@ -50,3 +50,26 @@
 - Si el cambio no tiene inputs externos ni secretos, indicarlo y cerrar el review
 
 **Calidad**: CRÍTICO o ALTO → REQUIERE CAMBIOS. Solo MEDIO/BAJO → APROBADO.
+
+---
+
+## Output Protocol (Subagent Mode)
+
+End your response with this block. The orchestrator retains ONLY this block.
+
+```
+---HANDOFF---
+phase: F5-security | F2-security (deploy) | F3-security (bugfix/refactor)
+status: COMPLETED
+files_modified: none
+files_created: none
+security_flag: YES
+verdict: APROBADO | REQUIERE_CAMBIOS
+blockers: NONE | [CRÍTICO/ALTO findings that must be fixed]
+summary: |
+  [Max 150 words: security posture, findings by severity.]
+for_next: |
+  [Max 100 words: verdict, critical/high findings for developer to address,
+   confirmation that security surface is covered.]
+---END HANDOFF---
+```

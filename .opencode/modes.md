@@ -1,19 +1,9 @@
-# Modes
+# OES Modes
 
-Active mode: standard
+active: standard
 
-standard
-performance-strict
-high-reliability
+performance-strict [@perf+]
+  O(n) always | hot-paths | no-recompute
 
----
-
-performance-strict
-- Declare Big-O when non-trivial
-- Identify hot paths
-- Avoid recomputation
-
-high-reliability
-- Explicit error handling
-- Validate invariants
-- Prevent inconsistent state
+high-reliability [@rel+]
+  err-explicit | invariants | state-consistent

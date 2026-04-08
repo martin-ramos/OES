@@ -1,19 +1,9 @@
-# Commands
+# OES Commands
 
-/work <text>
-- Classify
-- Activate skills if required
-- Execute pipeline
-- End with Review FINAL
-
-/feature <text>
-/bug <text>
-/refactor <text>
-/review <text>
-/sdd <text>
-/review-pr [number or branch]
-- Activate pr-reviewer skill
-- Verify compilation first
-- Analyze diff, commits, scope, patterns, readability
-- Emit structured verdict: APPROVED | APPROVED WITH OBSERVATIONS | REJECTED
-- One PR at a time
+/work $task     → classify → skills? → exec @std → @end
+/feature $task  → explore→spec→design→plan→impl→verify → @end
+/bug $task      → root-cause → fix-minimal → verify → @end
+/refactor $task → no-behavior-change → @std → @end
+/review $code   → eval[@std,@perf,@rel] → EQI[0-100]
+/sdd $design    → phases[6] → engram_remember → @end
+/review-pr $pr  → compile-first | diff+commits+scope+patterns → verdict[APPROVED|OBS|REJECTED]

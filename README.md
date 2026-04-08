@@ -68,9 +68,22 @@ OES now includes a `pr-reviewer` Senior Software Engineer skill:
 
 ## Tool Support
 
-| Tool | Directory |
-|---|---|
-| OpenCode | `.opencode/` |
-| Claude Code | `.claude/` |
+| Tool | Config file | Directory |
+|---|---|---|
+| Claude Code | `.claude/CLAUDE.md` | `.claude/` |
+| OpenCode | `.opencode/OES.md` | `.opencode/` |
+| Codex CLI | `AGENTS.md` | `.opencode/` |
 
-Version: v1.3.0
+## Compact Prompt Format (v1.4.0)
+
+OES uses a compact notation to minimize token overhead:
+
+- `@std` — Clean Code + SOLID + Security baseline
+- `@perf` — Performance constraints
+- `@rel` — Reliability constraints
+- `@end` — Mandatory review gate + EQI score
+- `?` — Conditional (apply when relevant)
+- `→` — Sequential flow
+- `|` — Set or alternative
+
+Version: v1.4.0

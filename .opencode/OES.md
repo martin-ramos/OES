@@ -1,24 +1,17 @@
 # OES Core
 
-DEFAULT MODE: standard
+MODE: standard
 
-Clean Code
-- Small functions
-- Clear names
-- No duplication
-- No mixed responsibilities
+@std
+  cc: fn-small | names-clear | no-dup | no-mixed-resp
+  solid: srp | ocp? | dip?
+  sec: no-secrets | validate-input
 
-SOLID
-- Real SRP
-- OCP when extension likely
-- DIP when valuable
+@perf
+  O(n) declare when non-trivial
+  no-recompute | no-redundancy
 
-Performance
-- Analyze complexity when non-trivial
-- Avoid redundancy
+@rel
+  err-explicit | invariants | state-consistent
 
-Security
-- No hardcoded secrets
-- Validate external input
-
-Mandatory explicit Review FINAL
+@end → review-final + EQI[0-100]

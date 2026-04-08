@@ -43,3 +43,26 @@
 - No agregar features ni cambiar comportamiento mientras se refactoriza
 
 **Calidad**: `./gradlew test` pasa antes y después. Un diff del comportamiento observable (endpoints, respuestas) debe estar vacío.
+
+---
+
+## Output Protocol (Subagent Mode)
+
+End your response with this block. The orchestrator retains ONLY this block.
+
+```
+---HANDOFF---
+phase: F1-refactorer
+status: COMPLETED | BLOCKED | NEEDS_CORRECTION
+files_modified: [comma-separated paths]
+files_created: [comma-separated paths, or "none"]
+security_flag: YES | NO
+verdict: N/A
+blockers: NONE | [list]
+summary: |
+  [Max 150 words: structural problem resolved, changes applied, gradlew test result.]
+for_next: |
+  [Max 100 words: structural changes made, contracts preserved (confirm explicitly),
+   test results, externally visible names changed (YES/NO).]
+---END HANDOFF---
+```

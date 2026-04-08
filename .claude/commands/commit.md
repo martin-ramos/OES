@@ -1,22 +1,29 @@
 ---
-description: Analizar los cambios actuales y crear commits atómicos con mensajes en formato Conventional Commits. Muestra el plan antes de commitear y pide confirmación.
+description: Create atomic commits with Conventional Commits format. Shows plan and waits for confirmation.
 ---
 
-Tipo de tarea: **COMMIT**
+# Commit Orchestrator
 
-Contexto adicional (opcional): $ARGUMENTS
+**Context**: $ARGUMENTS
 
 ---
 
-## commit-writer
+## Setup
 
-Invoca el agente `commit-writer` para analizar el estado actual del repositorio y crear commits atómicos.
+Read `.claude/protocols/handoff.md` → store as `HANDOFF_PROTOCOL`
 
-El agente debe:
-1. Ejecutar `git status` y `git diff` para entender todos los cambios
-2. Proponer un plan de commits atómicos con sus mensajes antes de ejecutar nada
-3. Esperar confirmación del usuario
-4. Crear los commits en orden lógico (dependencias primero)
-5. Mostrar `git log --oneline` con los commits creados al final
+---
 
-Si $ARGUMENTS tiene contexto (ej: "esto es parte del feature de notificaciones"), usarlo para escribir mensajes más precisos.
+## F1 — commit-writer
+
+1. Read `.claude/agents/commit-writer.md`
+2. Invoke **Agent tool** (subagent_type: general-purpose):
+   ```
+   {commit-writer.md content}
+
+   TASK: Analyze current changes and create atomic commits.
+   Context: $ARGUMENTS
+
+   {HANDOFF_PROTOCOL}
+   ```
+3. Present the commit plan to the user and wait for confirmation before executing.

@@ -35,3 +35,25 @@ Después de confirmación: commits ejecutados con verificación de `git status`.
 - Mostrar plan SIEMPRE antes de commitear
 
 **Calidad**: cada commit es reversible de forma independiente y su mensaje describe la razón del cambio.
+
+---
+
+## Output Protocol (Subagent Mode)
+
+End your response with this block. The orchestrator retains ONLY this block.
+
+```
+---HANDOFF---
+phase: F8-commit | F6-commit
+status: COMPLETED | BLOCKED
+files_modified: none
+files_created: none
+security_flag: NO
+verdict: N/A
+blockers: NONE | [reason if waiting for user confirmation]
+summary: |
+  [Max 150 words: commits created or proposed, git log summary.]
+for_next: |
+  [Max 100 words: commits created. Pipeline complete.]
+---END HANDOFF---
+```

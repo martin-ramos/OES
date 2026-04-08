@@ -39,3 +39,26 @@
 - `@Transactional` solo en operaciones de escritura o lectura que requieran consistencia
 
 **Calidad**: el código compila, sigue las convenciones del proyecto, y el test-engineer puede escribir tests sin modificar la implementación.
+
+---
+
+## Output Protocol (Subagent Mode)
+
+End your response with this block. The orchestrator retains ONLY this block.
+
+```
+---HANDOFF---
+phase: F2-developer | F3b-developer-fix
+status: COMPLETED | BLOCKED | NEEDS_CORRECTION
+files_modified: [comma-separated paths]
+files_created: [comma-separated paths, or "none"]
+security_flag: YES | NO
+verdict: N/A
+blockers: NONE | [list]
+summary: |
+  [Max 150 words: what was implemented, gradlew classes result, key decisions.]
+for_next: |
+  [Max 100 words: files modified/created, key behaviors to test (happy path + errors),
+   non-obvious decisions the reviewer should know about.]
+---END HANDOFF---
+```

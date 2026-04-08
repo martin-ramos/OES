@@ -37,3 +37,25 @@
 - No crear nuevos archivos de doc sin justificación
 
 **Calidad**: un developer nuevo puede entender el contrato público del cambio leyendo solo la documentación actualizada.
+
+---
+
+## Output Protocol (Subagent Mode)
+
+End your response with this block. The orchestrator retains ONLY this block.
+
+```
+---HANDOFF---
+phase: F7-docs | F5-docs
+status: COMPLETED
+files_modified: [docs files updated]
+files_created: [new docs files, or "none"]
+security_flag: NO
+verdict: N/A
+blockers: NONE
+summary: |
+  [Max 150 words: what was documented, which files updated.]
+for_next: |
+  [Max 100 words: docs updated, ready for commit. List files changed.]
+---END HANDOFF---
+```

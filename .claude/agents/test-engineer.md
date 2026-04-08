@@ -41,3 +41,26 @@
 - Para regresiones (bugfix): el test debe fallar si se revierte el fix
 
 **Calidad**: `./gradlew test` pasa. Los tests fallarían si se revierte la lógica que cubren.
+
+---
+
+## Output Protocol (Subagent Mode)
+
+End your response with this block. The orchestrator retains ONLY this block.
+
+```
+---HANDOFF---
+phase: F4-tests | F2-test-verification
+status: COMPLETED | NEEDS_CORRECTION
+files_modified: [existing test files modified, or "none"]
+files_created: [new test files created, or "none"]
+security_flag: NO
+verdict: N/A
+blockers: NONE | [failing tests]
+summary: |
+  [Max 150 words: tests created, behaviors covered, gradlew test result.]
+for_next: |
+  [Max 100 words: test files created, behaviors covered (happy path + errors),
+   gradlew test result, edge cases intentionally not covered.]
+---END HANDOFF---
+```
