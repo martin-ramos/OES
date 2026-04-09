@@ -168,6 +168,22 @@ OES uses a compact notation to minimize token overhead across all tools:
 
 ---
 
+## Installation
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/martin-ramos/OES/main/install.sh | bash
+```
+
+The installer:
+- Detects which tools are present (Claude Code, OpenCode, Codex CLI)
+- Asks whether to install globally or per-project (Claude Code)
+- Asks before overwriting any existing file
+- Reminds you to configure Engram if not installed
+
+If no tools are detected, it asks interactively which ones to install.
+
+---
+
 ## Quick Links
 
 - [QUICKSTART.md](QUICKSTART.md) — Installation and first use
